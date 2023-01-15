@@ -11,6 +11,7 @@ from users.permissions import IsOwnerPermission
 
 
 class GenreView(viewsets.ModelViewSet):
+    """This class handles the views for the Genre model."""
     queryset = Genre.objects.all()
     serializer_class = GenresSerializer
     authentication_classes = [JWTAuthentication,]
@@ -20,6 +21,7 @@ class GenreView(viewsets.ModelViewSet):
 
 
 class TypeOfMangaView(viewsets.ModelViewSet):
+    """This class handles the views for the TypeOfManga model."""
     queryset = TypeOfManga.objects.all()
     serializer_class = TypeOfMangaSeializer
     authentication_classes = [JWTAuthentication,]
@@ -27,6 +29,7 @@ class TypeOfMangaView(viewsets.ModelViewSet):
 
 
 class MangaView(viewsets.ModelViewSet):
+    """This class handles the views for the Manga model."""
     queryset = Manga.objects.select_related("type_of_manga").all()
     serializer_class = MangaSerializer
     filter_backends = [DjangoFilterBackend]
@@ -38,20 +41,22 @@ class MangaView(viewsets.ModelViewSet):
 
 
 class MangaDetail(viewsets.ModelViewSet):
+    """This class handles the views for the detail of the Manga model. """
     queryset = Manga.objects.all()
     serializer_class = MangaSerializer
     authentication_classes = [JWTAuthentication,]
     permission_classes = [IsAuthenticatedOrReadOnly,]
 
     def get(self, request, pk):
+        '''It overrides the default get method to handle retrieval of a specific manga instance by primary key (pk)'''
         post = Manga.objects.get(pk=pk)
         serializer = MangaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(post=post)
+        serializer.save(post=post)
         return Response(serializer.data)
 
 
 class CommentView(viewsets.ModelViewSet):
+    '''CommentView class handles the CRUD operations for the Comment model using the CommentSerializer'''
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     authentication_classes = [JWTAuthentication]

@@ -1,8 +1,5 @@
 from django.contrib import admin
-from manga_part.models import Genre
-from manga_part.models import TypeOfManga
-from manga_part.models import Manga
-from manga_part.models import Comment
+from manga_part.models import Genre, TypeOfManga, Manga, Comment
 
 
 class CommentAdmin(admin.ModelAdmin):

@@ -20,9 +20,9 @@ class TypeOfManga(models.Model):
 
 
 class Manga(models.Model):
-    name = models.CharField(max_length=60)
-    year = models.IntegerField(verbose_name="Год выпуска")
-    image = models.ImageField(default="", verbose_name="Изображение")
+    name = models.CharField(max_length=60, null=False,blank=True)
+    year = models.IntegerField(verbose_name="Год выпуска", blank=True )
+    image = models.ImageField(default="", verbose_name="Изображение", blank=True)
     create = models.DateField(auto_now_add=True,verbose_name="Дата содания")
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="mangas")
     type_of_manga = models.ForeignKey(TypeOfManga, on_delete=models.CASCADE, verbose_name="Тип")
@@ -37,7 +37,7 @@ class Manga(models.Model):
 
 class Comment(models.Model):
     manga = models.ForeignKey("manga_part.Manga", on_delete=models.CASCADE)
-    text = models.TextField(max_length=400, verbose_name="Комменатрии")
+    text = models.TextField(max_length=400, verbose_name="Комменатрии", blank=True, name="text")
     username = models.ForeignKey('users.User', on_delete=models.CASCADE)
 
     def __str__(self):

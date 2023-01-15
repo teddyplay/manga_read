@@ -6,6 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from users.serializers import RegisUserSerializer
 from rest_framework import viewsets
 
+
 class SignUp(viewsets.ModelViewSet):
     """API endpoint for registering a new user."""
     serializer_class = RegisUserSerializer
