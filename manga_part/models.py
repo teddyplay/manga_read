@@ -42,6 +42,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.username} Прокомментировал запись {self.manga}'
-
-
-# Create your models here.

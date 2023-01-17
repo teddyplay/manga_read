@@ -8,12 +8,14 @@ from manga_part.models import Genre,Manga,TypeOfManga,Comment
 from manga_part.serializers import GenresSerializer, TypeOfMangaSeializer, MangaSerializer, CommentSerializer
 from manga_part.pagination import MangaPagination
 from users.permissions import IsOwnerPermission
+# from .services import GenreService
 
 
 class GenreView(viewsets.ModelViewSet):
     """This class handles the views for the Genre model."""
     queryset = Genre.objects.all()
     serializer_class = GenresSerializer
+    # genre = GenreService()
     authentication_classes = [JWTAuthentication,]
     permission_classes = [IsAuthenticatedOrReadOnly,]
     filter_backends = [DjangoFilterBackend]
