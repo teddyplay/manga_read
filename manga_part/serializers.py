@@ -4,10 +4,7 @@ from users.models import User
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(
-        min_length=2,
-        max_length=20,
-    )
+    username = serializers.CharField(min_length=2,max_length=20)
 
     class Meta:
         model = User
@@ -15,25 +12,18 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class GenresSerializer(serializers.ModelSerializer):
-    genre = serializers.CharField(
-        min_length=3,
-        max_length=50,
-    )
+    genre = serializers.CharField(min_length=3,max_length=50,)
 
     class Meta:
         model = Genre
         fields = [
             "id",
             "genre",
-            "manga_list",
-        ]
+            "manga_list",]
 
 
 class TypeOfMangaSeializer(serializers.ModelSerializer):
-    type_of = serializers.CharField(
-        min_length=1,
-        max_length=50,
-    )
+    type_of = serializers.CharField(min_length=1,max_length=50,)
 
     class Meta:
         model = TypeOfManga
@@ -61,12 +51,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class MangaSerializer(serializers.ModelSerializer):
-    name = serializers.CharField(
-        min_length=1,
-        max_length=70,
-    )
+    name = serializers.CharField(min_length=1,max_length=70,)
     year = serializers.IntegerField(default=0)
-
 
     class Meta:
         model = Manga
@@ -75,5 +61,4 @@ class MangaSerializer(serializers.ModelSerializer):
             "name",
             "year",
             "comments",
-            # "text",
         ]
